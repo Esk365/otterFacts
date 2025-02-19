@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Otter Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .fact-display {
+            margin: 20px 0;
+            font-size: 1.2em;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 1em;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        @media (max-width: 600px) {
+            .fact-display {
+                font-size: 1em;
+            }
+
+            .button {
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Otter Fun Facts</h1>
+        <div id="fact-display" class="fact-display">Click the button to see a fun fact!</div>
+        <button id="fact-button" class="button">Show Random Fact</button>
+        <button id="twitter-button" class="button">Share on Twitter</button>
+    </div>
+    <script>
+        const facts = [
+            "Otters have a pocket in their armpits where they store their favorite rocks.",
+            "Sea otters hold hands while sleeping to keep from drifting apart.",
+            "Otters are part of the weasel family, which also includes animals like badgers and wolverines.",
+            "There are 13 different species of otters found all over the world.",
+            "Otters have the densest fur in the animal kingdom, with up to a million hair follicles per square inch.",
+            "River otters can hold their breath underwater for up to 8 minutes.",
+            "Otters are known to use tools, such as rocks, to crack open shellfish.",
+            "Giant otters can grow up to 6 feet long, making them the largest otter species.",
+            "Otters are very playful animals and often engage in activities like sliding down mud or snow.",
+            "Sea otters play a crucial role in maintaining the health of kelp forests by controlling sea urchin populations."
+        ];
+
+        document.getElementById('fact-button').addEventListener('click', () => {
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            const factDisplay = document.getElementById('fact-display');
+            factDisplay.style.opacity = 0;
+            setTimeout(() => {
+                factDisplay.textContent = randomFact;
+                factDisplay.style.opacity = 1;
+            }, 500);
+        });
+
+        document.getElementById('twitter-button').addEventListener('click', () => {
+            const fact = document.getElementById('fact-display').textContent;
+            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
+            window.open(twitterUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
